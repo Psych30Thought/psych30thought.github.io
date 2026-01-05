@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IQ Test | psych30thought</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+    padding:0;
+}
+header{
+    background:#2c3e50;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+.container{
+    padding:20px;
+}
+.box{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:8px;
+}
+button{
+    background:#2c3e50;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+button:hover{
+    background:#1a252f;
+}
+.result{
+    font-weight:bold;
+    font-size:18px;
+}
+.small{
+    font-size:13px;
+    color:#555;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>IQ Test</h1>
+    <p>psych30thought – 30 Thoughts. One Mind. Know Yourself.</p>
+</header>
+
+<div class="container">
+
+<div class="box">
+<p><b>Instructions:</b> Choose the correct answer. This is a basic cognitive self-assessment.</p>
+</div>
+
+<form id="iqTest">
+
+<div class="box">
+<p>1. What comes next? 2, 4, 6, 8, ?</p>
+<input type="radio" name="q1" value="1"> 9<br>
+<input type="radio" name="q1" value="2"> 10<br>
+<input type="radio" name="q1" value="0"> 12<br>
+</div>
+
+<div class="box">
+<p>2. Which shape is different?</p>
+<input type="radio" name="q2" value="0"> Circle<br>
+<input type="radio" name="q2" value="0"> Square<br>
+<input type="radio" name="q2" value="1"> Triangle (3D)<br>
+</div>
+
+<div class="box">
+<p>3. Find the odd one out:</p>
+<input type="radio" name="q3" value="0"> Apple<br>
+<input type="radio" name="q3" value="1"> Carrot<br>
+<input type="radio" name="q3" value="0"> Banana<br>
+</div>
+
+<div class="box">
+<p>4. If ALL BLOPS are RIBS and ALL RIBS are TIBS, then ALL BLOPS are?</p>
+<input type="radio" name="q4" value="1"> TIBS<br>
+<input type="radio" name="q4" value="0"> BLOPS<br>
+<input type="radio" name="q4" value="0"> RIBS<br>
+</div>
+
+<div class="box">
+<p>5. What is half of 100 + 20?</p>
+<input type="radio" name="q5" value="1"> 70<br>
+<input type="radio" name="q5" value="0"> 60<br>
+<input type="radio" name="q5" value="0"> 50<br>
+</div>
+
+<div class="box">
+<button type="button" onclick="calculateScore()">Submit Test</button>
+</div>
+
+</form>
+
+<div class="box result" id="result"></div>
+
+<div class="box small">
+⚠️ This test is for educational and self-reflection purposes only.  
+It is not a clinical or medical diagnosis.
+</div>
+
+</div>
+
+<script>
+function calculateScore(){
+    let score = 0;
+    const form = document.getElementById("iqTest");
+    const answers = form.querySelectorAll("input[type=radio]:checked");
+
+    answers.forEach(answer => {
+        score += parseInt(answer.value);
+    });
+
+    let message = "";
+
+    if(score <= 1){
+        message = "Low score – may indicate difficulty with logical patterns.";
+    } else if(score <= 3){
+        message = "Average score – basic reasoning ability.";
+    } else {
+        message = "High score – strong logical and analytical thinking.";
+    }
+
+    document.getElementById("result").innerHTML =
+        "Your Score: " + score + "/5<br>" + message;
+}
+</script>
+
+</body>
+</html>
